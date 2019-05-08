@@ -7,11 +7,14 @@ template <typename T>
 
 class powerset
 {
+    // protected:
+    // string _contPowerset;
+
 public:
-string _contPowerset;
 
-    powerset(string contPowerset);
-    powerset(range contPowerset1,range contPowerset2);
+    powerset(T contPowerset);
+   // powerset(string contPowerset);
+    //powerset(range contPowerset1,range contPowerset2);
 };
 
-};
+}

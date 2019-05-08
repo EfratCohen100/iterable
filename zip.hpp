@@ -3,17 +3,20 @@
 
 namespace itertools
 {
-template <typename T>
+template <typename T,typename U>
 
 class zip
 {
-    range _contZip1;
-    range _contZip2;
-    string _strZip;
+    // protected:
+    // range _contZip1;
+    // range _contZip2;
+    // string _strZip;
 
 public:
-    zip(range contZip1, range contZip2);
-    zip(range contZip, string strZip);
+
+zip(T contZip1, U contZip2);
+    // zip(range contZip1, range contZip2);
+    // zip(range contZip, string strZip);
 };
 
-};
+}
