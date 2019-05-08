@@ -1,23 +1,16 @@
 #pragma once
-#include <iostream>
-#include <iterator>
-
-
 namespace itertools
 {
 template <typename T>
 class range
 {
-  //  protected:
-  //   T rangeCont1;
-  //   T rangeCont2;
-
 public:
-    
+     T _container1;
+     T _container2;
 
-  range(T rangeCont1 , T rangeCont2);
-  // range begin(T container);
-  // range end(T container);
+ range(T rangeConst1 , T rangeCont2);
+ T begin(T container1,T container2);
+ T end( T container2, T container2);
 
 };
-}
+};

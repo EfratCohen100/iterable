@@ -3,19 +3,15 @@
 
 namespace itertools
 {
-template <typename T,typename U>
+template <typename T>
 class chain
 {
-     //protected:
-    //  range container1;
-    //  range container2;
-
-    
 
 public:
-
-    // chain(range container1, range container2);
-    chain(T container1, U container2);
-    
+    T _container1;
+    T _container2;
+    chain(T container1, T container2);
+    T begin(T start1, T start2);
+    T end(T stop1, T stop2);
 };
-}
+};

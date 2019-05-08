@@ -4,17 +4,16 @@
 
 namespace itertools
 {
-    template <typename T,typename U>
+template <typename T>
 
 class product
 {
-// protected:
-// range _contProdut1;
-//  string _contProduct2;
-
+ T _contProdut1;
+ T _contProduct2;
 public:
-    product(T contProdut1, U contProduct2);
-    //product(range contProdut1, string contProduct2);
+    product(T contProdut1, T contProduct2);
+    T begin(T start1, T start2);
+    T end(T stop1, T stop2);
 };
 
-}
+};
