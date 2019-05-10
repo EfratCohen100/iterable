@@ -81,7 +81,7 @@ public:
 
     template<typename T> ostream& operator<< (ostream& os,  range<T>& type){
         for(T i: type){
-            os << i << ",";
+            os << i ;
         }
         return os;
     }
