@@ -75,5 +75,14 @@ public:
 		return iterator{&_end};
 	}
 
+
+ template<typename T> friend ostream& operator<< (ostream& os,  range<T>& type); ///??
 };
-}
+
+    template<typename T> ostream& operator<< (ostream& os,  range<T>& type){
+        for(T i: type){
+            os << i << ",";
+        }
+        return os;
+    }
+};
