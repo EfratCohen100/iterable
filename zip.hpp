@@ -12,8 +12,8 @@ class zip
 
 public:
     zip(T contZip1, T contZip2);
-    T begin(T start1, T stop2);
-    T end(T start2, T stop2);
+    // T begin(T start1, T stop2);
+    // T end(T start2, T stop2);
 };
 
 };

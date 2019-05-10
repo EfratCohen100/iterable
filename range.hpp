@@ -11,14 +11,20 @@ class range
 
 public:
 
-range(T _begin,T _end);
+range(T _begin,T _end)
+{
+    this -> _begin =_begin;
+    this-> _end = _end;
+}
 
 class iterator{
 public:
-    T _iter;
-    T m_value;
-    T m_next;
-    iterator(T iter);
+    T *_iter;
+    // T m_value;
+    // T m_next;
+
+    iterator(T* _iter = nullptr): _iter(_iter) {}
+   
 
 //      T _container1;
 //      T _container2;
@@ -28,32 +34,33 @@ public:
 //   void operator++(iter++);
 
 		T& operator*() const {
-			_iter=m_value;
-            return _iter;
+			return *_iter;
 		}
 
 		// T* operator->() const {
-		// 	return &(T _iter;->m_value);
+		// 	return &(m_pointer->m_value);
 		// }
 
-		
+		// ++i;
 		iterator& operator++() {
-			_iter=m_next;
+			++(*_iter);
 			return *this;
 		}
 
+		// i++;
+		// Usually iterators are passed by value and not by const& as they are small.
 		const iterator operator++(int) {
 			iterator tmp= *this;
-			_iter=m_next;
+			(*_iter)++;
 			return tmp;
 		}
 
 		bool operator==(const iterator& rhs) const {
-			return _iter == rhs._iter;
+			return (*_iter) == (*rhs._iter);
 		}
 
 		bool operator!=(const iterator& rhs) const {
-			return _iter != rhs._iter;
+			return (*_iter) != (*rhs._iter);
 		}
 
  };
@@ -61,11 +68,11 @@ public:
      public:
 
     iterator begin() {
-		return iterator{_begin};
+		return iterator{&_begin};
 	}
 	
 	iterator end() {
-		return iterator{_end};
+		return iterator{&_end};
 	}
 
 };
