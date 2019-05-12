@@ -15,31 +15,34 @@ private:
     U endU;
 
   public:
-	zip(T beginT,T endT,U beginU, U endU)
-	{
-		this->beginT = beginT;
-		this->endT = endT;
-        this->beginU = beginU;
-		this->endU = endU;
-	}
+	// zip(T beginT,T endT,U beginU, U endU)
+	// {
+	// 	this->beginT = beginT;
+	// 	this->endT = endT;
+  //       this->beginU = beginU;
+	// 	this->endU = endU;
+	// }
 
 zip<T,U>(T typeT,U typeU) : beginT(typeT) , beginU(typeU){}
     
 
 	class iterator
 	{
-	  public:
+	  
+		private:
+      typename T::iterator iterBeginT;
+      typename T::iterator iterEndT;
+      typename U::iterator iterBeginU;
+      typename U::iterator iterEndU;
 
-		T *iterBeginT;
-        T *iterEndT;
-        U *iterBeginU;
-        U *iterEndU;
+				public:
 
-		iterator(T *iterBeginT = nullptr) : iterBeginT(iterBeginT) {}
+		iterator(typename T::iterator iter1BeginT,typename T::iterator iter1EndT, typename U::iterator iter2BeginU,typename U::iterator iter2EndU)
+		 : iterBeginT(iter1BeginT),iterEndT(iter1EndT),iterBeginU(iter2BeginU),iterEndU(iter2EndU) {}
 
 		T &operator*() const/////////////////////////////////////////////////////////////////////////////////
 		{
-			return *iterBeginT;
+			return iterBeginT;
 		}
 
 		T *operator->() const//////////////////////////////////////////////////////////////////////////////////
@@ -50,15 +53,15 @@ zip<T,U>(T typeT,U typeU) : beginT(typeT) , beginU(typeU){}
 		// ++i;
 		iterator &operator++()
 		{
-            if(*iterBeginT != *iterEndT)
-            {
-                ++(*iterBeginT);
-            }
-            else
-            {
-               if(*iterBeginU != *iterEndU)
-               ++(*iterBeginU);
-            }
+            // if(*iterBeginT != *iterEndT)
+            // {
+            //     ++(*iterBeginT);
+            // }
+            // else
+            // {
+            //    if(*iterBeginU != *iterEndU)
+            //    ++(*iterBeginU);
+            // }
 			return *this;
 		}
 
@@ -66,7 +69,7 @@ zip<T,U>(T typeT,U typeU) : beginT(typeT) , beginU(typeU){}
 		const iterator operator++(int)//////////////////////////////////////////////////////////////////
 		{
 			iterator tmp = *this;
-			(*iterBeginT)++;
+			(iterBeginT)++;
 			return tmp;
 		}
 
@@ -84,12 +87,12 @@ zip<T,U>(T typeT,U typeU) : beginT(typeT) , beginU(typeU){}
   public:
 	iterator begin()
 	{
-		return iterator{&beginT};////////////////////////////////////////////////////////
+		return zip<T,U>::iterator{beginT};////////////////////////////////////////////////////////
 	}
 
 	iterator end()
 	{
-		return iterator{&endU};///////////////////////////////////////////////////////////
+		return zip<T,U>::iterator{endU};///////////////////////////////////////////////////////////
 	}
 
 

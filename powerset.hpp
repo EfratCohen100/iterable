@@ -13,23 +13,24 @@ class powerset
 	T _end;
 
   public:
-	powerset(T _begin, T _end)
-	{
-		this->_begin = _begin;
-		this->_end = _end;
-	}
+	// powerset(T _begin, T _end)
+	// {
+	// 	this->_begin = _begin;
+	// 	this->_end = _end;
+	// }
+	powerset <T> (T _begin,T _end) : _begin(_begin), _end(_end) {}
 
 	class iterator
 	{
-	  public:
-		T *_iter;
+	  private:
+		T _iter;
 
-
-		iterator(T *_iter = nullptr) : _iter(_iter) {}
+	public:
+		iterator(T _iter) : _iter(_iter) {}
 
 		T &operator*() const
 		{
-			return *_iter;
+			return _iter;
 		}
 
 		T *operator->() const
@@ -40,7 +41,7 @@ class powerset
 		// ++i;
 		iterator &operator++()
 		{
-			++(*_iter);
+			++(_iter);
 			return *this;
 		}
 
@@ -49,30 +50,30 @@ class powerset
 		const iterator operator++(int)
 		{
 			iterator tmp = *this;
-			(*_iter)++;
+			(_iter)++;
 			return tmp;
 		}
 
 		bool operator==(const iterator &rhs) const
 		{
-			return (*_iter) == (*rhs._iter);
+			return (_iter) == (rhs._iter);
 		}
 
 		bool operator!=(const iterator &rhs) const
 		{
-			return (*_iter) != (*rhs._iter);
+			return (_iter) != (rhs._iter);
 		}
 	};
 
   public:
 	iterator begin()
 	{
-		return iterator{&_begin};
+		return powerset<T>::iterator{_begin};
 	}
 
 	iterator end()
 	{
-		return iterator{&_end};
+		return powerset<T>::iterator{_end};
 	}
 
 
