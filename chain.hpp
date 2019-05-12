@@ -14,14 +14,6 @@ private:
     U beginU;
     U endU;
 
-
-    // T _container1;
-    // T _container2;
-    // chain(T container1, T container2);
-    // T begin(T start1, T start2);
-    // T end(T stop1, T stop2);
-
-
   public:
 	chain(T beginT,T endT,U beginU, U endU)
 	{
@@ -31,10 +23,7 @@ private:
 		this->endU = endU;
 	}
 
-    chain<T,U>(T typeT,U typeU)
-    
-        :beginT=typeT;
-        beginU=typeU;
+    chain<T,U>(T typeT,U typeU) : beginT(typeT) , beginU(typeU){}
     
 
 	class iterator
@@ -46,17 +35,17 @@ private:
         U *iterBeginU;
         U *iterEndU;
 
-// 		iterator(T *_iter = nullptr) : _iter(_iter) {}
+		iterator(T *iterBeginT = nullptr) : iterBeginT(iterBeginT) {}
 
-// 		T &operator*() const
-// 		{
-// 			return *_iter;
-// 		}
+		T &operator*() const/////////////////////////////////////////////////////////////////////////////////
+		{
+			return *iterBeginT;
+		}
 
-// 		T *operator->() const
-// 		{
-// 			return &(_iter);
-// 		}
+		T *operator->() const//////////////////////////////////////////////////////////////////////////////////
+		{
+			return &(iterBeginT);
+		}
 
 		// ++i;
 		iterator &operator++()
@@ -67,41 +56,41 @@ private:
             }
             else
             {
+               if(*iterBeginU != *iterEndU)
                ++(*iterBeginU);
             }
 			return *this;
 		}
 
-// 		// i++;
-// 		// Usually iterators are passed by value and not by const& as they are small.
-// 		const iterator operator++(int)
-// 		{
-// 			iterator tmp = *this;
-// 			(*_iter)++;
-// 			return tmp;
-// 		}
+ 		// i++;
+		const iterator operator++(int)//////////////////////////////////////////////////////////////////
+		{
+			iterator tmp = *this;
+			(*iterBeginT)++;
+			return tmp;
+		}
 
-// 		bool operator==(const iterator &rhs) const
-// 		{
-// 			return (*_iter) == (*rhs._iter);
-// 		}
+		bool operator==(const iterator &rhs) const
+		{
+			return true;
+		}
 
-// 		bool operator!=(const iterator &rhs) const
-// 		{
-// 			return (*_iter) != (*rhs._iter);
-// 		}
+		bool operator!=(const iterator &rhs) const  //////////////////////////////////////////////////////////////
+		{
+			return true;
+		}
  	};
 
-//   public:
-// 	iterator begin()
-// 	{
-// 		return iterator{&_begin};
-// 	}
+  public:
+	iterator begin()
+	{
+		return iterator{&beginT};////////////////////////////////////////////////////////
+	}
 
-// 	iterator end()
-// 	{
-// 		return iterator{&_end};
-// 	}
+	iterator end()
+	{
+		return iterator{&endU};///////////////////////////////////////////////////////////
+	}
 
 
 

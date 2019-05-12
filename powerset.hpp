@@ -7,13 +7,75 @@ template <typename T>
 
 class powerset
 {
-public:
-  T _contPowerset;
 
-    powerset(T contPowerset);
-    powerset(T contPowerset1,T contPowerset2);
-    // T begin(T start1, T start2);
-    // T end(T stop, T stop2);
+  private:
+	T _begin;
+	T _end;
+
+  public:
+	powerset(T _begin, T _end)
+	{
+		this->_begin = _begin;
+		this->_end = _end;
+	}
+
+	class iterator
+	{
+	  public:
+		T *_iter;
+
+
+		iterator(T *_iter = nullptr) : _iter(_iter) {}
+
+		T &operator*() const
+		{
+			return *_iter;
+		}
+
+		T *operator->() const
+		{
+			return &(_iter);
+		}
+
+		// ++i;
+		iterator &operator++()
+		{
+			++(*_iter);
+			return *this;
+		}
+
+		// i++;
+		// Usually iterators are passed by value and not by const& as they are small.
+		const iterator operator++(int)
+		{
+			iterator tmp = *this;
+			(*_iter)++;
+			return tmp;
+		}
+
+		bool operator==(const iterator &rhs) const
+		{
+			return (*_iter) == (*rhs._iter);
+		}
+
+		bool operator!=(const iterator &rhs) const
+		{
+			return (*_iter) != (*rhs._iter);
+		}
+	};
+
+  public:
+	iterator begin()
+	{
+		return iterator{&_begin};
+	}
+
+	iterator end()
+	{
+		return iterator{&_end};
+	}
+
+
 };
 
 };
