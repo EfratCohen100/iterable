@@ -4,7 +4,7 @@
 
 namespace itertools
 {
-template <typename T>
+template <typename T,typename U>
 
 class product
 {
