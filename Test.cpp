@@ -35,7 +35,7 @@ int main() {
   string result=""; string result1="";  string result2="";  string result3="";  string result4="";  string result5=""; string result6=""; string result7=""; string result8=""; string result9="";
   
 
-  for (int i: range(2.0000005,9.0000005))
+  for (double i: range(2.0000005,9.0000005))
    {
 		result=to_string(i); 
    }  
@@ -59,19 +59,19 @@ int main() {
   {
      result5=to_string(i);   
   }
-    for (char i:range(5,9)) //"5 6 7 8"
+    for (int i:range(5,9)) //"5 6 7 8"
   {
      result6=to_string(i);   
   }
-      for (char i:range(1.1,7.1)) //"1.1 2.1 3.1 4.1 5.1 6.1"
+      for (double i:range(1.1,7.1)) //"1.1 2.1 3.1 4.1 5.1 6.1"
   {
      result7=to_string(i);   
   }
-      for (char i:range(0.5,7.5)) //"0.5 1.5 2.5 3.5 4.5 5.5 6.5"
+      for (double i:range(0.5,7.5)) //"0.5 1.5 2.5 3.5 4.5 5.5 6.5"
   {
      result8=to_string(i);   
   }
-     for (char i:range(-5,3)) //"-5 -4 -3 -2 -1 0 1 2"
+     for (int i:range(-5,3)) //"-5 -4 -3 -2 -1 0 1 2"
   {
      result9=to_string(i);   
   }
@@ -138,7 +138,7 @@ for (auto i: chain(range(1.1,6.1), range('a','g')))
   {
      chain9=to_string(i);
   }
-      for (int i:chain(range(0.1,0.5),range(3.2,6.2)))//"0.1 0.2 0.3 0.4 3.2 4.2 5.2"
+      for (double i:chain(range(0.1,0.5),range(3.2,6.2)))//"0.1 0.2 0.3 0.4 3.2 4.2 5.2"
   {
      chain10=to_string(i);
   }
