@@ -7,7 +7,6 @@ class chain
 {
 
 private:
-private:
 	T c1;
 	U c2;
 

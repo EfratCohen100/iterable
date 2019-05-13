@@ -8,91 +8,71 @@ template <typename T,typename U>
 class zip
 {
 private:
+	T c1;
+	U c2;
 
-    T beginT;
-    T endT;
-    U beginU;
-    U endU;
-
-  public:
-	// zip(T beginT,T endT,U beginU, U endU)
-	// {
-	// 	this->beginT = beginT;
-	// 	this->endT = endT;
-  //       this->beginU = beginU;
-	// 	this->endU = endU;
-	// }
-
-zip<T,U>(T typeT,U typeU) : beginT(typeT) , beginU(typeU){}
-    
+public:
+	zip(T c1, U c2) : c1(c1) , c2(c2) {}
 
 	class iterator
 	{
-	  
-		private:
-      typename T::iterator iterBeginT;
-      typename T::iterator iterEndT;
-      typename U::iterator iterBeginU;
-      typename U::iterator iterEndU;
 
-				public:
+	private:
+		typename T::iterator itr1;
+		typename U::iterator itr2;
 
-		iterator(typename T::iterator iter1BeginT,typename T::iterator iter1EndT, typename U::iterator iter2BeginU,typename U::iterator iter2EndU)
-		 : iterBeginT(iter1BeginT),iterEndT(iter1EndT),iterBeginU(iter2BeginU),iterEndU(iter2EndU) {}
+		
 
-		T &operator*() const/////////////////////////////////////////////////////////////////////////////////
+	public:
+		iterator(typename T::iterator itr1, typename U::iterator itr2) : itr1(itr1) , itr2(itr2) {}
+
+		auto &operator*() const
 		{
-			return iterBeginT;
+			
+				return *itr1;
+			
 		}
 
-		T *operator->() const//////////////////////////////////////////////////////////////////////////////////
-		{
-			return &(iterBeginT);
-		}
+		// auto *operator-> () const
+		// {
+		
+		// 		return &itr1;
+		
+		// }
 
 		// ++i;
 		iterator &operator++()
 		{
-            // if(*iterBeginT != *iterEndT)
-            // {
-            //     ++(*iterBeginT);
-            // }
-            // else
-            // {
-            //    if(*iterBeginU != *iterEndU)
-            //    ++(*iterBeginU);
-            // }
 			return *this;
 		}
 
- 		// i++;
-		const iterator operator++(int)//////////////////////////////////////////////////////////////////
+		// i++;
+		// Usually iterators are passed by value and not by const& as they are small.
+		const iterator operator++(int)
 		{
-			iterator tmp = *this;
-			(iterBeginT)++;
-			return tmp;
+			return *this;
 		}
 
 		bool operator==(const iterator &rhs) const
 		{
-			return true;
+			return false;
 		}
 
-		bool operator!=(const iterator &rhs) const  //////////////////////////////////////////////////////////////
+		bool operator!=(const iterator &rhs) const
 		{
-			return true;
+			return false;
 		}
- 	};
+	};
 
-  public:
+public:
 	iterator begin()
 	{
-		return zip<T,U>::iterator{beginT};////////////////////////////////////////////////////////
+		return zip<T,U>::iterator(c1.begin(), c2.begin());
 	}
 
 	iterator end()
 	{
-		return zip<T,U>::iterator{endU};///////////////////////////////////////////////////////////
+		return  zip<T,U>::iterator(c1.end(), c2.end());
 	}
 
 

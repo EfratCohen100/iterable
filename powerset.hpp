@@ -8,35 +8,36 @@ template <typename T>
 class powerset
 {
 
-  private:
+   private:
 	T _begin;
 	T _end;
 
   public:
-	// powerset(T _begin, T _end)
-	// {
-	// 	this->_begin = _begin;
-	// 	this->_end = _end;
-	// }
-	powerset <T> (T _begin,T _end) : _begin(_begin), _end(_end) {}
+	
+	powerset <T> (T _begin,T _end):_begin(_begin) , _end(_end){}
+
 
 	class iterator
 	{
 	  private:
 		T _iter;
 
-	public:
-		iterator(T _iter) : _iter(_iter) {}
+    public:
+		iterator(T _iter ) : _iter(_iter) {}
 
-		T &operator*() const
+		auto &operator*() const
 		{
-			return _iter;
+			
+				return *_iter;
+			
 		}
 
-		T *operator->() const
-		{
-			return &(_iter);
-		}
+		// auto *operator-> () const
+		// {
+		
+		// 		return &_iter;
+		
+		// }
 
 		// ++i;
 		iterator &operator++()
@@ -65,15 +66,15 @@ class powerset
 		}
 	};
 
-  public:
+public:
 	iterator begin()
 	{
-		return powerset<T>::iterator{_begin};
+		return powerset<T>::iterator(_begin.begin());
 	}
 
 	iterator end()
 	{
-		return powerset<T>::iterator{_end};
+		return  powerset<T>::iterator(_end.end());
 	}
 
 

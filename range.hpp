@@ -19,17 +19,21 @@ class range
 		T _iter;
 
     public:
-		iterator(T _iter ) : _iter(_iter) {}
+		iterator( T _iter ) : _iter(_iter) {}
 
-		T &operator*() const
+		auto &operator*() const
 		{
-			return _iter;
+			
+				return _iter;
+			
 		}
 
-		T *operator->() const
-		{
-			return &(_iter);
-		}
+		// auto *operator-> () const
+		// {
+		
+		// 		return &_iter;
+		
+		// }
 
 		// ++i;
 		iterator &operator++()
@@ -58,15 +62,18 @@ class range
 		}
 	};
 
-  public:
+public:
 	iterator begin()
 	{
-		return range<T>::iterator{_begin};
+		return range<T>::iterator(_begin);
 	}
 
 	iterator end()
 	{
-		return range<T>::iterator{_end};
+		return  range<T>::iterator(_end);
 	}
 };
 } // namespace itertools
+
+
+
