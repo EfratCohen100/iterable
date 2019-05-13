@@ -10,8 +10,6 @@
 
 #include <iostream>
 #include <sstream>
-using namespace std;
-using namespace itertools;
 #include<string.h>
 #include "chain.hpp"
 #include "powerset.hpp"
@@ -19,6 +17,9 @@ using namespace itertools;
 #include "range.hpp"
 #include "zip.hpp"
 #include "badkan.hpp"
+
+using namespace std;
+using namespace itertools;
 
 int main() {
 	badkan::TestCase testcase;
