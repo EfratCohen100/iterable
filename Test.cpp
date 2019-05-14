@@ -36,98 +36,115 @@ int main() {
   string result=""; string result1="";  string result2="";  string result3="";  string result4="";  string result5=""; string result6=""; string result7=""; string result8=""; string result9="";
   
 
-  for (double i: range(2.0000005,9.0000005))
+  for (double i: range(2.0000005,9.0000005))// not work print 2.000001
    {
-		result=to_string(i); 
+		result+=to_string(i); 
+    result.append(" ");
+
    }  
    for (char i: range('a','e'))
    {
-		result1=to_string(i); 
+		result1+=i; 
+    result1.append(" ");
+
    }  
   //   for (int i: range(4.5,8.7))
   //  {
 	// 	result2=to_string(i); 
   //  }  
-    for (char i: range('b','b'))
+    for (char i: range('b','b'))///????? not work print " "
    {
-		result3=to_string(i); 
+		result3+=i; 
+    result3.append(" ");
+
    }  
   for (char i: string("computer"))
   {
-     result4=to_string(i);   
+     result4+=i;   
+     result4.append(" ");
+
   }
-  for (char i: string(" "))
+
+  for (auto i: string(" "))
   {
-     result5=to_string(i);   
+     result5+=i;
+   
   }
     for (int i:range(5,9)) //"5 6 7 8"
   {
-     result6=to_string(i);   
+     result6+=to_string(i);
+     result6.append(" ");
+   
   }
       for (double i:range(1.1,7.1)) //"1.1 2.1 3.1 4.1 5.1 6.1"
   {
-     result7=to_string(i);   
+     result7+=to_string(i);
+     result7.append(" ");
+   
   }
-      for (double i:range(0.5,7.5)) //"0.5 1.5 2.5 3.5 4.5 5.5 6.5"
+      for (double i:range(0.5,7.5)) //"0.5 1.5 2.5 3.5 4.5 5.5 6.5"----<problem print 0.500, 1.5000
   {
-     result8=to_string(i);   
+     result8+=to_string(i);
+     result8.append(" ");
+   
   }
      for (int i:range(-5,3)) //"-5 -4 -3 -2 -1 0 1 2"
   {
-     result9=to_string(i);   
+     result9+=to_string(i); 
+     result9.append(" ");
+  
   }
 
   testcase.setname("range test:")
  
-  .CHECK_EQUAL(result=="2.0000005 3.0000005 4.0000005 5.0000005 6.0000005 7.0000005 8.0000005", true)
-  .CHECK_EQUAL(result1=="a b c d", true)
+  .CHECK_EQUAL(result=="2.0000005 3.0000005 4.0000005 5.0000005 6.0000005 7.0000005 8.0000005 ", true)
+  .CHECK_EQUAL(result1=="a b c d ", true)
   //.CHECK_EQUAL(result2=="4.5 ", true)//????
   .CHECK_EQUAL(result3=="b", true)
-  .CHECK_EQUAL(result4=="c o m p u t e r", true)
+  .CHECK_EQUAL(result4=="c o m p u t e r ", true)
   .CHECK_EQUAL(result5==" ", true)
 
-   .CHECK_EQUAL(result6=="5 6 7 8", true)
-   .CHECK_EQUAL(result7=="1.1 2.1 3.1 4.1 5.1 6.1", true)
-   .CHECK_EQUAL(result8=="0.5 1.5 2.5 3.5 4.5 5.5 6.5", true)
-   .CHECK_EQUAL(result9=="-5 -4 -3 -2 -1 0 1 2", true)
+   .CHECK_EQUAL(result6=="5 6 7 8 ", true)
+   .CHECK_EQUAL(result7=="1.1 2.1 3.1 4.1 5.1 6.1 ", true)
+   .CHECK_EQUAL(result8=="0.5 1.5 2.5 3.5 4.5 5.5 6.5 ", true)
+   .CHECK_EQUAL(result9=="-5 -4 -3 -2 -1 0 1 2 ", true)
   
+    
   ;
-
-
-
+     cout<<result5<<endl;
    string chain1=""; string chain2=""; string chain3=""; string chain4=""; string chain5=""; string chain6=""; string chain7=""; string chain8=""; string chain9="";  string chain10=""; string chain11="";
    
 	for (int i: chain(range(0,4), range(5,7)))
   {
-     chain1=to_string(i);
+     chain1+=to_string(i);
   }
 	
 	for (char i: chain(range('e','e'), string("shira")))
   {
-    chain2=to_string(i);
+    chain2+=to_string(i);
   }
 
 for (auto i: chain(range(1.1,6.1), range('a','g')))
   {
-     chain3=to_string(i);
+     chain3+=to_string(i);
   }
 	
 	for (char i: chain(range('g','k'), string("apple")))
   {
-    chain4=to_string(i);
+    chain4+=to_string(i);
   }
   for (int i: chain(range(1,4), range(5,8)))
   {
-     chain5=to_string(i);
+     chain5+=to_string(i);
   }
 	
 	for (char i: chain(string("welcome"), string("mom")))
   {
-    chain6=to_string(i);
+    chain6+=to_string(i);
   }
   for (char i: chain(range('h','k'), range('k','p')))
   {
-     chain7=to_string(i);
+     chain7+=to_string(i);
   }
 	
 	// for (char i: chain(range(' ',' '), string("liraz")))//???
@@ -137,15 +154,15 @@ for (auto i: chain(range(1.1,6.1), range('a','g')))
 
     for (int i:chain(range(4,9),range(1,4)))//"4 5 6 7 8 1 2 3"
   {
-     chain9=to_string(i);
+     chain9+=to_string(i);
   }
       for (double i:chain(range(0.1,0.5),range(3.2,6.2)))//"0.1 0.2 0.3 0.4 3.2 4.2 5.2"
   {
-     chain10=to_string(i);
+     chain10+=to_string(i);
   }
        for (char i:chain(range('a','d'),string("hello")))//"a b c h e l l o"
   {
-     chain11=to_string(i);
+     chain11+=to_string(i);
   }
   
 
@@ -171,48 +188,48 @@ for (auto i: chain(range(1.1,6.1), range('a','g')))
    
 	for (auto pair: zip(range(9.2,14.2), string("galit")))//"9.2,g 10.2,a 11.2,l 12.2,i 13.2,t"
   {
-    zip1=to_string(pair);
+    zip1+=to_string(pair);
 
   }
 	for (auto pair: zip((string("dani")),zip(string("roni"),range(6,10))))//"d,r,6 a,o,7 n,n,8 i,i,9"
   {
-    zip2=to_string(pair);
+    zip2+=to_string(pair);
 
   }
   for (auto pair: zip(range(5,7), string("dh")))//"5,d 6,h"
   {
-    zip3=to_string(pair);
+    zip3+=to_string(pair);
 
   }
 
   for (auto pair: zip(range(1.3,5.3), string("mira")))//"1.3m,2.3i,3.3r,4.3a"
   {
-    zip5=to_string(pair);
+    zip5+=to_string(pair);
 
   }
 	for (auto pair: zip(zip(range(1,5), string("2222")),zip(string("1111"),range(6,10))))//1,2,1,6  2,2,1,7 3,2,1,8  5,2,1,9 
   {
-        zip6=to_string(pair);
+        zip6+=to_string(pair);
 
   }
   for (auto pair: zip(range(1,5), string("good")))//1,g 2,o 3,o 4,d
   {
-    zip7=to_string(pair);
+    zip7+=to_string(pair);
 
   }
     for (auto pair:zip(range(1,7),string("byebye")))//"1,b 2,y 3,e 4,b 5,y 6,e"
   {
-    zip8=to_string(pair);
+    zip8+=to_string(pair);
 
   }
      for (auto pair:zip(range(1,7),range(10,16)))//"1,10 2,11 3,12 4,13 5,14 6,15"
   {
-    zip9=to_string(pair);
+    zip9+=to_string(pair);
 
   }
        for (auto pair:zip(zip(range(1,4), string("xyz")),zip(string("abc"),range(6,9))))//"1,x,a,6  2,y,b,7  3,z,c,8"
   {
-    zip10=to_string(pair);
+    zip10+=to_string(pair);
 
   }
 
@@ -238,49 +255,49 @@ for (auto i: chain(range(1.1,6.1), range('a','g')))
 
 	for (auto pair: product(range(1,2), string("may")))//"1,m 1,a 1,y"
   {
-     product1=to_string(pair);
+     product1+=to_string(pair);
   }
 
 for (auto pair: product(string("2"), string("marker")))//"2,m 2,a 2,r 2,k 2,e 2,r"
 {
-     product2=to_string(pair);
+     product2+=to_string(pair);
 }
 
 for (auto pair: product(range(1,4), range(0,1)))//"1,0 2,0 3,0"
 {
-     product3=to_string(pair);
+     product3+=to_string(pair);
 }
 
 for (auto pair: product(range(6.7,9.7), string("log")))//"6.7,l 6.7,o 6.7,g 7.7,l 7.7,o 7.7,g 8.7l 8.7o 8.7g"
 {
-         product4=to_string(pair);
+         product4+=to_string(pair);
 }
 
 for (auto pair: product(range(2,5), range(5,7)))//"2,5 2,6 3,5 3,6 4,5 4,6"
 {
-         product5=to_string(pair);
+         product5+=to_string(pair);
 
 }
 
 for (auto pair: product(string("roya"), string("root")))//"r,r r,o r,o r,t o,r, o,o, o,o o,t y,r y,o y,o y,t a,r a,o a,o a,t"
 {
-        product6=to_string(pair);
+        product6+=to_string(pair);
 
 }
 
 for (auto pair: product(string("neno"),range(60,62)))//"n,60 n,61 e,60 e,61 n,60 n,61 o,60 0,61"
 {
-       product7=to_string(pair);
+       product7+=to_string(pair);
 
 }
 for (auto pair:product(range(1,3),string("helo")))//"1,h 1,e 1,l 1,o 2,h 2,e 2,l 2,o"
 {
-       product8=to_string(pair);
+       product8+=to_string(pair);
 
 }
 for (auto pair:product(range(1,3),range(0.1,3.1)))//"1,0.1 1,1.1 1,2.1 2,0.1 2,1.1 2,2.1"
 {
-       product9=to_string(pair);
+       product9+=to_string(pair);
 
 }
 
@@ -305,37 +322,37 @@ for (auto pair:product(range(1,3),range(0.1,3.1)))//"1,0.1 1,1.1 1,2.1 2,0.1 2,1
 
 	for (auto subset: powerset(chain(range('a','b'),range('f','h'))))//"{}{a}{f}{g}{a,f}{a,g}{f,g}{a,f,g}"
   {
-      powerset2=to_string(subset);
+      powerset2+=to_string(subset);
   }
   for (auto subset: powerset(range(13,15)))//"{},{13},{14},{13,14}"
   {
-      powerset3=to_string(subset);
+      powerset3+=to_string(subset);
   }
 
 	for (auto subset: powerset(chain(range('s','k'),range('x','z'))))//"{},{s},{i},{g},{}"
   {
-      powerset4=to_string(subset);
+      powerset4+=to_string(subset);
   }
 
   for (auto subset: powerset(range(4.6,8.6)))//"{},{4.6},{5.6},{7.6},{4.6,5.6},{4.6,7.6},{5.6,7,6},{4.6,5.6,7.6}"
   {
-      powerset5=to_string(subset);
+      powerset5+=to_string(subset);
   }
 
 
   for (auto subset: powerset(range(6,10)))//"{},{6},{7},{8},{9},{6,7},{6,8},{6,9},{8,9},{7,8},{7,9},{6,7,8},{6,7,9},{7,8,9},{6,7,8,9}"
   {
-      powerset7=to_string(subset);
+      powerset7+=to_string(subset);
   }
 
     for (auto subset: powerset(range(1,4)))//"{}{1}{2}{1,2}{3}{1,3}{2,3}{1,2,3}"
   {
-      powerset8=to_string(subset);
+      powerset8+=to_string(subset);
   }
 
      for (auto subset:powerset(chain(range('a','c'),range('x','z'))))//"{}{a}{b}{a,b}{x}{a,x}{b,x}{a,b,x}{y}{a,y}{b,y}{a,b,y}{x,y}{a,x,y}{b,x,y}{a,b,x,y}"
   {
-      powerset9=to_string(subset);
+      powerset9+=to_string(subset);
   }
 
   
