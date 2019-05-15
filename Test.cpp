@@ -32,6 +32,7 @@ int main() {
   {
 
 
+  ostringstream ostr;
 
   string result=""; string result1="";  string result2="";  string result3="";  string result4="";  string result5=""; string result6=""; string result7=""; string result8=""; string result9="";
   
@@ -188,50 +189,67 @@ for (auto i: chain(range(1.1,6.1), range('a','g')))
    
 	for (auto pair: zip(range(9.2,14.2), string("galit")))//"9.2,g 10.2,a 11.2,l 12.2,i 13.2,t"
   {
-    zip1+=to_string(pair);
-
+    ostr<<pair<<" ";
   }
+  zip1=ostr.str();
+  ostr.str("");
+
 	for (auto pair: zip((string("dani")),zip(string("roni"),range(6,10))))//"d,r,6 a,o,7 n,n,8 i,i,9"
   {
-    zip2+=to_string(pair);
-
+    ostr<<pair<<" ";
   }
+  zip2=ostr.str();
+  ostr.str("");
+
   for (auto pair: zip(range(5,7), string("dh")))//"5,d 6,h"
   {
-    zip3+=to_string(pair);
-
+    ostr<<pair<<" ";
   }
+  zip3=ostr.str();
+  ostr.str("");
 
   for (auto pair: zip(range(1.3,5.3), string("mira")))//"1.3m,2.3i,3.3r,4.3a"
   {
-    zip5+=to_string(pair);
-
+    ostr<<pair<<" ";
   }
+  zip5=ostr.str();
+  ostr.str("");
+
+
 	for (auto pair: zip(zip(range(1,5), string("2222")),zip(string("1111"),range(6,10))))//1,2,1,6  2,2,1,7 3,2,1,8  5,2,1,9 
   {
-        zip6+=to_string(pair);
-
+    ostr<<pair<<" ";
   }
+zip6=ostr.str();
+ostr.str("");
+
   for (auto pair: zip(range(1,5), string("good")))//1,g 2,o 3,o 4,d
   {
-    zip7+=to_string(pair);
-
+    ostr<<pair<<" ";
   }
+zip7=ostr.str();
+ostr.str("");
+
     for (auto pair:zip(range(1,7),string("byebye")))//"1,b 2,y 3,e 4,b 5,y 6,e"
   {
-    zip8+=to_string(pair);
-
+    ostr<<pair<<" ";
   }
+zip8=ostr.str();
+ostr.str("");
+
      for (auto pair:zip(range(1,7),range(10,16)))//"1,10 2,11 3,12 4,13 5,14 6,15"
   {
-    zip9+=to_string(pair);
-
+    ostr<<pair<<" ";
   }
-       for (auto pair:zip(zip(range(1,4), string("xyz")),zip(string("abc"),range(6,9))))//"1,x,a,6  2,y,b,7  3,z,c,8"
+zip9=ostr.str();
+ostr.str("");
+
+     for (auto pair:zip(zip(range(1,4), string("xyz")),zip(string("abc"),range(6,9))))//"1,x,a,6  2,y,b,7  3,z,c,8"
   {
-    zip10+=to_string(pair);
-
+    ostr<<pair<<" ";
   }
+  zip10=ostr.str();
+  ostr.str("");
 
    
 

@@ -1,81 +1,100 @@
 #pragma once
 #include "range.hpp"
+using namespace std;
+#include <iostream>
+#include <sstream>
+
+
+
+
+
 
 namespace itertools
 {
+
 template <typename T,typename U>
 
 class zip
 {
 private:
-	T c1;
-	U c2;
+	T firstType;
+	U secondType;
 
 public:
-	zip(T c1, U c2) : c1(c1) , c2(c2) {}
+	zip(T firstType, U secondType) : firstType(firstType) , secondType(secondType) {}
 
 	class iterator
 	{
 
 	private:
-		typename T::iterator itr1;
-		typename U::iterator itr2;
+		typename T::iterator itr1B;
+		typename U::iterator itr2B;
+		typename T::iterator itr1E;
+		typename U::iterator itr2E;
 
 		
 
 	public:
-		iterator(typename T::iterator itr1, typename U::iterator itr2) : itr1(itr1) , itr2(itr2) {}
+		iterator(typename T::iterator itr1B,typename T::iterator itr1E, typename U::iterator itr2B,typename U::iterator itr2E) : itr1B(itr1B),itr1E(itr1E) , itr2B(itr2B),itr2E(itr2E) {}
 
-		auto &operator*() const
+		auto operator*() const
 		{
 			
-				return *itr1;
-			
+			return pair<decltype(*itr1B),decltype(*itr2B)>(*itr1B,*itr2B);			
 		}
 
-		// auto *operator-> () const
-		// {
-		
-		// 		return &itr1;
-		
-		// }
+
 
 		// ++i;
 		iterator &operator++()
 		{
+			++itr1B;
+			++itr2B;
 			return *this;
 		}
 
 		// i++;
-		// Usually iterators are passed by value and not by const& as they are small.
 		const iterator operator++(int)
 		{
+			iterator temp = *this;
+			operator++();
 			return *this;
 		}
 
-		bool operator==(const iterator &rhs) const
+		// bool operator==(const iterator &rhs) const
+		// {
+		// 	return true;
+		// }
+
+		bool operator!=(const iterator &rhs) const     //?
 		{
-			return false;
+			return !(*itr1B==*rhs.itr1B && *itr2B == *rhs.itr2B);
+			//return (*itr1B!=*rhs.itr1B) || (*itr2B != *rhs.itr2B);
 		}
 
-		bool operator!=(const iterator &rhs) const
-		{
-			return false;
-		}
+		
+
 	};
 
 public:
 	iterator begin()
 	{
-		return zip<T,U>::iterator(c1.begin(), c2.begin());
+		return  iterator(firstType.begin(),firstType.end(), secondType.begin(),secondType.end());
 	}
 
 	iterator end()
 	{
-		return  zip<T,U>::iterator(c1.end(), c2.end());
+		return   iterator(firstType.end(),firstType.end(),secondType.end(), secondType.end());
 	}
 
 
 
+
 };
-};
+
+template <typename T1, typename T2> 
+ostream& operator<< (ostream& out, const pair<T1,T2>& thepair) {
+	out << thepair.first << "," << thepair.second;
+	return out;
+}
+}
