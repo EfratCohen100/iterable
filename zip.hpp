@@ -64,37 +64,6 @@ public:
 		}
 	};
 
-	class const_iterator
-	{
-private:
-		typename T::iterator itr1;
-		typename U::iterator itr2;
-
-		
-	public:
-		const_iterator(typename T::iterator itr1, typename U::iterator itr2) : itr1(itr1) , itr2(itr2) {}
-		const auto &operator*() const
-
-		{
-
-			return *itr1;
-		}
-
-		const_iterator &operator++()
-
-		{
-
-			return *this;
-		}
-
-		bool operator!=(const const_iterator &other) const
-		{
-			return false;
-		}
-
-
-	};
-
 public:
 	iterator begin()
 	{
@@ -106,18 +75,7 @@ public:
 		return  zip<T,U>::iterator(c1.end(), c2.end());
 	}
 
-	const_iterator begin() const {
-		return zip<T,U>::const_iterator(c1.begin(), c2.begin());
-
-
-	}
-
-	const_iterator end() const {
-		return  zip<T,U>::const_iterator(c1.end(), c2.end());
-
-		
-	}
 
 
 };
-}
+};
