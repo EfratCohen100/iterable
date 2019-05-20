@@ -10,7 +10,7 @@ class range
 
   public:
 	
-	range <T> (T _begin,T _end):_begin(_begin) , _end(_end){}
+	range(T _begin,T _end):_begin(_begin) , _end(_end){}
 
 
 	class iterator
