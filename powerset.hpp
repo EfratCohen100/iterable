@@ -16,22 +16,13 @@ class powerset
 
 {
 
-
-
    private:
 
 	T _begin;
 
-
-
   public:
 
-	
-
-	powerset <T> (T _begin):_begin(_begin) {}
-
-
-
+	powerset(T _begin):_begin(_begin) {}
 
 
 	class iterator
@@ -54,11 +45,7 @@ class powerset
 
 		{
 
-			
-
-				return *_iter;
-
-			
+           return *_iter;
 
 		}
 
@@ -83,8 +70,6 @@ class powerset
 		iterator &operator++()
 
 		{
-
-
 
 			return *this;
 

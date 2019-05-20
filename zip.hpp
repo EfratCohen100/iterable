@@ -79,12 +79,12 @@ public:
 public:
 	iterator begin()
 	{
-		return  iterator(firstType.begin(),firstType.end(), secondType.begin(),secondType.end());
+		return  zip<T, U>::iterator(firstType.begin(),firstType.end(), secondType.begin(),secondType.end());
 	}
 
 	iterator end()
 	{
-		return   iterator(firstType.end(),firstType.end(),secondType.end(), secondType.end());
+		return   zip<T, U>::iterator(firstType.end(),firstType.end(),secondType.end(), secondType.end());
 	}
 
 
