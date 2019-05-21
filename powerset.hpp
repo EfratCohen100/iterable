@@ -132,7 +132,7 @@ public:
 }
 
 template <typename U>
-std::ostream &operator<<(std::ostream &os, const std::set<U> &U)
+std::ostream &operator<<(std::ostream &os, const std::set<U> &S)
 {
     
     return os;
