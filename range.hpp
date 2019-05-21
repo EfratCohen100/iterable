@@ -13,13 +13,13 @@ class range
 	range(T _begin,T _end):_begin(_begin) , _end(_end){}
 
 
-	class iterator
+	class const_iterator
 	{
 	  private:
 		T _iter;
 
     public:
-		iterator( T _iter ) : _iter(_iter) {}
+		const_iterator( T _iter ) : _iter(_iter) {}
 
 		auto &operator*() const
 		{
@@ -36,41 +36,41 @@ class range
 		// }
 
 		// ++i;
-		iterator &operator++()
+		const_iterator &operator++()
 		{
 			++(_iter);
 			return *this;
 		}
 
 		// i++;
-		// Usually iterators are passed by value and not by const& as they are small.
-		const iterator operator++(int)
+		// Usually const_iterators are passed by value and not by const& as they are small.
+		const const_iterator operator++(int)
 		{
-			iterator tmp = *this;
+			const_iterator tmp = *this;
 			(_iter)++;
 			return tmp;
 		}
 
-		bool operator==(const iterator &rhs) const
+		bool operator==(const const_iterator &rhs) const
 		{
 			return (_iter) == (rhs._iter);
 		}
 
-		bool operator!=(const iterator &rhs) const
+		bool operator!=(const const_iterator &rhs) const
 		{
 			return (_iter) != (rhs._iter);
 		}
 	};
 
 public:
-	iterator begin()
+	const_iterator begin() const 
 	{
-		return range<T>::iterator(_begin);
+		return range<T>::const_iterator(_begin);
 	}
 
-	iterator end()
+	const_iterator end() const
 	{
-		return  range<T>::iterator(_end);
+		return  range<T>::const_iterator(_end);
 	}
 };
 } // namespace itertools

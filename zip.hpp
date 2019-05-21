@@ -23,19 +23,19 @@ private:
 public:
 	zip(T firstType, U secondType) : firstType(firstType) , secondType(secondType) {}
 
-	class iterator
+	class const_iterator
 	{
 
 	private:
-		typename T::iterator itr1B;
-		typename U::iterator itr2B;
-		typename T::iterator itr1E;
-		typename U::iterator itr2E;
+		typename T::const_iterator itr1B;
+		typename U::const_iterator itr2B;
+		typename T::const_iterator itr1E;
+		typename U::const_iterator itr2E;
 
 		
 
 	public:
-		iterator(typename T::iterator itr1B,typename T::iterator itr1E, typename U::iterator itr2B,typename U::iterator itr2E) : itr1B(itr1B),itr1E(itr1E) , itr2B(itr2B),itr2E(itr2E) {}
+		const_iterator(typename T::const_iterator itr1B,typename T::const_iterator itr1E, typename U::const_iterator itr2B,typename U::const_iterator itr2E) : itr1B(itr1B),itr1E(itr1E) , itr2B(itr2B),itr2E(itr2E) {}
 
 		auto operator*() const
 		{
@@ -46,7 +46,7 @@ public:
 
 
 		// ++i;
-		iterator &operator++()
+		const_iterator &operator++()
 		{
 			++itr1B;
 			++itr2B;
@@ -54,19 +54,19 @@ public:
 		}
 
 		// i++;
-		const iterator operator++(int)
+		const const_iterator operator++(int)
 		{
-			iterator temp = *this;
+			const_iterator temp = *this;
 			operator++();
 			return *this;
 		}
 
-		// bool operator==(const iterator &rhs) const
+		// bool operator==(const const_iterator &rhs) const
 		// {
 		// 	return true;
 		// }
 
-		bool operator!=(const iterator &rhs) const     //?
+		bool operator!=(const const_iterator &rhs) const     //?
 		{
 			return !(*itr1B==*rhs.itr1B && *itr2B == *rhs.itr2B);
 			//return (*itr1B!=*rhs.itr1B) || (*itr2B != *rhs.itr2B);
@@ -77,14 +77,14 @@ public:
 	};
 
 public:
-	iterator begin()
+	const_iterator begin() const
 	{
-		return  zip<T, U>::iterator(firstType.begin(),firstType.end(), secondType.begin(),secondType.end());
+		return  zip<T, U>::const_iterator(firstType.begin(),firstType.end(), secondType.begin(),secondType.end());
 	}
 
-	iterator end()
+	const_iterator end() const
 	{
-		return   zip<T, U>::iterator(firstType.end(),firstType.end(),secondType.end(), secondType.end());
+		return   zip<T, U>::const_iterator(firstType.end(),firstType.end(),secondType.end(), secondType.end());
 	}
 
 

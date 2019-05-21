@@ -25,19 +25,19 @@ class powerset
 	powerset(T _begin):_begin(_begin) {}
 
 
-	class iterator
+	class const_iterator
 
 	{
 
 	  private:
 
-		typename T::iterator _iter ;
+		typename T::const_iterator _iter ;
 
 
 
     public:
 
-		iterator(typename T::iterator _iter ) : _iter(_iter) {}
+		const_iterator(typename T::const_iterator _iter ) : _iter(_iter) {}
 
 
 
@@ -67,7 +67,7 @@ class powerset
 
 		// ++i;
 
-		iterator &operator++()
+		const_iterator &operator++()
 
 		{
 
@@ -79,13 +79,13 @@ class powerset
 
 		// i++;
 
-		// Usually iterators are passed by value and not by const& as they are small.
+		// Usually const_iterators are passed by value and not by const& as they are small.
 
-		const iterator operator++(int)
+		const const_iterator operator++(int)
 
 		{
 
-			iterator tmp = *this;
+			const_iterator tmp = *this;
 
 			(_iter)++;
 
@@ -95,7 +95,7 @@ class powerset
 
 
 
-		bool operator==(const iterator &rhs) const
+		bool operator==(const const_iterator &rhs) const
 
 		{
 
@@ -105,7 +105,7 @@ class powerset
 
 
 
-		bool operator!=(const iterator &rhs) const
+		bool operator!=(const const_iterator &rhs) const
 
 		{
 
@@ -119,21 +119,21 @@ class powerset
 
 public:
 
-	iterator begin()
+	const_iterator begin() const
 
 	{
 
-		return powerset<T>::iterator(_begin.begin());
+		return powerset<T>::const_iterator(_begin.begin());
 
 	}
 
 
 
-	iterator end()
+	const_iterator end() const
 
 	{
 
-		return  powerset<T>::iterator(_begin.end());
+		return  powerset<T>::const_iterator(_begin.end());
 
 	}
 

@@ -1,115 +1,72 @@
+
 #pragma once
 
 namespace itertools
 {
-template <typename T1, typename U1>
+template <typename T, typename U>
 class chain
 {
 
 private:
-	T1 c1;
-	U1 c2;
+    T c1;
+    U c2;
 
 public:
-	chain(T1 c1, U1 c2) : c1(c1) , c2(c2) {}
+    chain(T c1, U c2) : c1(c1) , c2(c2) {}
 
-	class iterator
-	{
+    class const_iterator
+    {
 
-	private:
-		T1 itr1;
-	    U1 itr2;
-        bool checkItr;
-		
+    private:
+        typename T::const_iterator itr1;
+        typename T::const_iterator itr1_end;
+        typename U::const_iterator itr2;
 
-	public:
-		iterator(T1 itr1, U1 itr2) : itr1(itr1) , itr2(itr2), checkItr(true) {}
+        
 
-		auto operator*() const
-		{
-			    if(checkItr)
-				{
-                 return *itr1;
-				}
-				else
-				{
-					return *itr2;
-				}
-		}
+    public:
+        const_iterator(typename T::const_iterator itr1,  typename T::const_iterator itr1_end,  typename U::const_iterator itr2) : itr1(itr1) , itr2(itr2) , itr1_end(itr1_end) {}
 
-		// auto *operator-> () const
-		// {
-		
-		// 		return &itr1;
-		
-		// }
+        auto operator*() const
+        {
 
-		// ++i;
-		iterator<T1,U1> &operator++()
-		{
-			if(checkItr==true)
-			{
-				++(itr1);
-			}
-			
-			else
-			{
-                ++(itr2);
-			}
+            if( itr1!= itr1_end) {
+                return *itr1;
+            }
+            else {
+                return *itr2;
+            }
+            
+        }
 
-			return *this;
-		}
+        // ++i;
+        const_iterator &operator++()
+        {
+            if( itr1!= itr1_end) {
+                ++itr1;
+            }
+            else {
+                ++itr2;
+            }
+            return *this;
+        }
 
-		// i++;
-		// Usually iterators are passed by value and not by const& as they are small.
-		const iterator operator++(int)
-		{
-			if(checkItr==true)
-			{
-               itr1++;
-			}
-			else
-			{
-				itr2++;
-			}		
-			return *this;
-		}
-		
-		bool operator!=(const iterator<T2,U2> &rhs) //const
-		{
-             if(itr1== rhs.itr1 && checkItr==true)
-			 {
-				 checkItr= false;
-		     }
-
-                if(checkItr){
-                    return itr1 != rhs.itr1;
-                }
-                else{
-                    return itr2 != rhs.itr2;
-                }
-            };
-	};
+        
+        bool operator!=(const const_iterator &rhs) const
+        {
+            return itr2!=rhs.itr2;
+        }
+    };
 
 public:
-	auto begin()
-	{
-	//	return chain<T,U>::iterator(c1.begin(), c2.begin());
-	 typedef decltype(c1.begin()) T1;
-            typedef decltype(c2.begin()) U1;
-            return iterator<T1,U1>{c1.begin(),c2.begin()};
-	//return  iterator<typedef decltype(c1.begin()),typedef decltype(c2.begin())>{c1.begin(),c2.begin()}; 
-	}
+    const_iterator begin() const
+    {
+        return chain<T,U>::const_iterator(c1.begin(), c1.end() ,c2.begin());
+    }
 
-	auto end()
-	{
-		//return  chain<T,U>::iterator(c1.end(), c2.end());
-	 //return iterator<typedef decltype(c1.end()),typedef decltype(c2.end())>{c1.end(),c2.end()};  
-	  typedef decltype(c1.end()) T1;
-            typedef decltype(c2.end()) U1;
-            return iterator<T1,U1>{c1.end(),c2.end()};
-
-	}
-	
+    const_iterator end() const
+    {
+        return chain<T,U>:: const_iterator(c1.end(), c1.end() ,c2.end());
+    }
 };
-};
+} // namespace itertools
