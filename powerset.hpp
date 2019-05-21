@@ -45,27 +45,11 @@ class powerset
 
 		{
 
-           return *_iter;
-
+		std::set<int> first;
+		return first;
 		}
 
 
-
-		// auto *operator-> () const
-
-		// {
-
-		
-
-		// 		return &_iter;
-
-		
-
-		// }
-
-
-
-		// ++i;
 
 		const_iterator &operator++()
 
@@ -145,4 +129,11 @@ public:
 
 
 
-};
+}
+
+template <typename U>
+std::ostream &operator<<(std::ostream &os, const std::set<U> &U)
+{
+    
+    return os;
+}
